@@ -24,9 +24,23 @@ const Home: NextPage = () => {
   };
 
   const prompt = `Generate 2 ${vibe} linkedin biographies with no hashtags and clearly labeled "1." and "2.". ${
-    vibe === "Funny"
-      ? "Make sure there is a joke in there and it's a little ridiculous."
-      : null
+    // vibe === "Funny"
+    //   ? "Make sure there is a joke in there and it's a little ridiculous."
+    //   : null
+    (() => {
+      switch (vibe) {
+        
+        case "Professional":
+          return "Keep the tone professional, entrepreneurial, and inspirational.";
+        case "Casual":
+          return "Keep it simple and casual. ";
+        case "Funny":
+            return "Make sure there is a joke in there and it's a little ridiculous.";
+        default:
+          // Optional: handle cases where the `vibe` value doesn't match any of the defined cases
+          return "Follow the general writing guidelines.";
+      }
+    })()
   }
       Make sure each generated biography is less than 160 characters, has short sentences that are found in LinkedIn bios, and base them on this context: ${bio}${
     bio.slice(-1) === "." ? "" : "."
